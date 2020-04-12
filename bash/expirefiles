@@ -1,4 +1,5 @@
 #!/bin/sh
+# Place in /etc/crontab/cron.daily/
 # skip in favour of systemd timer
 if [ -d /run/systemd/system ]; then
     exit 0
