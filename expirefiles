@@ -1,0 +1,27 @@
+#!/bin/sh
+find /opt/media/TV/The\ Daily\ Show -mtime +30 -delete
+# skip in favour of systemd timer
+if [ -d /run/systemd/system ]; then
+    exit 0
+fi
+
+# this cronjob persists removals (but not purges)
+if [ ! -x /usr/sbin/logrotate ]; then
+    exit 0
+fi
+
+FILES="/opt/media/1
+/opt/media/2"
+
+for I in $FILES; do
+	find I$  -mtime +45 -delete
+done
+
+#find /opt/media/TV/The\ Daily\ Show -mtime +30 -delete
+#find /opt/media/TV/Full\ Frontal\ with\ Samantha\ Bee -mtime +60 -delete
+
+EXITVALUE=$?
+#if [ $EXITVALUE != 0 ]; then
+#    /usr/bin/logger -t clenaup "ALERT cleanup exited abnormally with [$EXITVALUE]"
+#fi
+exit $EXITVALUE
