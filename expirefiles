@@ -1,5 +1,4 @@
 #!/bin/sh
-find /opt/media/TV/The\ Daily\ Show -mtime +30 -delete
 # skip in favour of systemd timer
 if [ -d /run/systemd/system ]; then
     exit 0
